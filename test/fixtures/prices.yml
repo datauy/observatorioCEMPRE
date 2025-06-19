@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  country: one
+  material: one
+  value: 1
+
+two:
+  country: two
+  material: two
+  value: 1

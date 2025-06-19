@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  buyer: one
+  requirement_category: one
+  semaphore: 1
+  material: one
+
+two:
+  name: MyString
+  description: MyText
+  buyer: two
+  requirement_category: two
+  semaphore: 1
+  material: two
