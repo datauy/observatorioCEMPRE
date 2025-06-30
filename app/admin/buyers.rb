@@ -1,11 +1,11 @@
 ActiveAdmin.register Buyer do
   # Specify parameters which should be permitted for assignment
-  permit_params :name, :description, :country_id, :address, :coordinates, :semaphore, :btype
+  permit_params :name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, material_ids:[]
 
   # or consider:
   #
   # permit_params do
-  #   permitted = [:name, :description, :country_id, :address, :coordinates, :semaphore, :btype]
+  #   permitted = [:name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
@@ -16,8 +16,8 @@ ActiveAdmin.register Buyer do
   # Add or remove filters to toggle their visibility
   filter :id
   filter :name
-  filter :description
   filter :country
+  filter :description
   filter :address
   filter :coordinates
   filter :semaphore
@@ -31,13 +31,13 @@ ActiveAdmin.register Buyer do
     id_column
     column :name
     column :description
-    column :country
     column :address
     column :coordinates
     column :semaphore
     column :btype
     column :created_at
     column :updated_at
+    column :country
     actions
   end
 
@@ -47,13 +47,13 @@ ActiveAdmin.register Buyer do
       row :id
       row :name
       row :description
-      row :country
       row :address
       row :coordinates
       row :semaphore
       row :btype
       row :created_at
       row :updated_at
+      row :country
     end
   end
 
@@ -63,11 +63,12 @@ ActiveAdmin.register Buyer do
     f.inputs do
       f.input :name
       f.input :description
-      f.input :country
       f.input :address
       f.input :coordinates
       f.input :semaphore
-      f.input :btype
+      f.input :btype, label: "Tipo de comprador"
+      f.input :country, label: "País", collection: Buyer.where(btype: 0).map{|b| [b.name, b.id]}
+      f.input :materials, as: :check_boxes
     end
     f.actions
   end

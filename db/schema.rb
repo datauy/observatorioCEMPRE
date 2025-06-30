@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_19_022251) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_26_022441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -68,53 +68,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_19_022251) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "buyer_requirements", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.bigint "buyer_id", null: false
-    t.bigint "requirement_category_id", null: false
-    t.integer "semaphore"
-    t.bigint "material_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["buyer_id"], name: "index_buyer_requirements_on_buyer_id"
-    t.index ["material_id"], name: "index_buyer_requirements_on_material_id"
-    t.index ["requirement_category_id"], name: "index_buyer_requirements_on_requirement_category_id"
-  end
-
   create_table "buyers", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "country_id", null: false
     t.string "address"
     t.string "coordinates"
     t.integer "semaphore"
     t.integer "btype"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_buyers_on_country_id"
+    t.bigint "buyer_id"
+    t.index ["buyer_id"], name: "index_buyers_on_buyer_id"
   end
 
-  create_table "countries", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "semaphore"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "country_requirements", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.bigint "country_id", null: false
-    t.bigint "requirement_category_id", null: false
-    t.integer "semaphore"
+  create_table "material_relations", force: :cascade do |t|
     t.bigint "material_id", null: false
+    t.bigint "buyer_id"
+    t.bigint "price_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_country_requirements_on_country_id"
-    t.index ["material_id"], name: "index_country_requirements_on_material_id"
-    t.index ["requirement_category_id"], name: "index_country_requirements_on_requirement_category_id"
+    t.index ["buyer_id"], name: "index_material_relations_on_buyer_id"
+    t.index ["material_id"], name: "index_material_relations_on_material_id"
+    t.index ["price_id"], name: "index_material_relations_on_price_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -126,12 +101,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_19_022251) do
   end
 
   create_table "prices", force: :cascade do |t|
-    t.bigint "country_id", null: false
     t.bigint "material_id", null: false
+    t.bigint "buyer_id", null: false
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_prices_on_country_id"
+    t.index ["buyer_id"], name: "index_prices_on_buyer_id"
     t.index ["material_id"], name: "index_prices_on_material_id"
   end
 
@@ -142,15 +117,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_19_022251) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requirements", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "buyer_id", null: false
+    t.bigint "requirement_category_id", null: false
+    t.integer "semaphore"
+    t.bigint "material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_requirements_on_buyer_id"
+    t.index ["material_id"], name: "index_requirements_on_material_id"
+    t.index ["requirement_category_id"], name: "index_requirements_on_requirement_category_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "buyer_requirements", "buyers"
-  add_foreign_key "buyer_requirements", "materials"
-  add_foreign_key "buyer_requirements", "requirement_categories"
-  add_foreign_key "buyers", "countries"
-  add_foreign_key "country_requirements", "countries"
-  add_foreign_key "country_requirements", "materials"
-  add_foreign_key "country_requirements", "requirement_categories"
-  add_foreign_key "prices", "countries"
+  add_foreign_key "buyers", "buyers"
+  add_foreign_key "material_relations", "buyers"
+  add_foreign_key "material_relations", "materials"
+  add_foreign_key "material_relations", "prices"
+  add_foreign_key "prices", "buyers"
   add_foreign_key "prices", "materials"
+  add_foreign_key "requirements", "buyers"
+  add_foreign_key "requirements", "materials"
+  add_foreign_key "requirements", "requirement_categories"
 end

@@ -1,0 +1,56 @@
+<div class="home">
+  <div class="header">
+    <h1>Compradores</h1>
+  </div>
+  <div id="content">
+    <div class="section filters">
+      
+    </div>
+    <div class="section">
+      <table id="buyers">
+        <tr class="theaders">
+          <th><i class="fa fa-flag"></i>País</th>
+          <th><i class="fa fa-recycle"></i>Materiales</th>
+          <th><i class="fa fa-industry-windows"></i>Compradores</th>
+          <th><i class="fa fa-clipboard-list-check"></i>Req. Empresa</th>
+          <th><i class="fa fa-building-columns"></i>Req. País</th>
+          <th><i class="fa fa-traffic-light"></i>Semáforo</th>
+          <th></th>
+        </tr>
+        <% @countries.each do |c| %>
+        <tr class="country">
+          <td class="name"><%= c[:name] %></td>
+          <td class="name"><%= c[:materials] %></td>
+          <td class="name"><%= c[:buyers].count %></td>
+          <td class="name"><%= c[:buyers_requirements] %></td>
+          <td class="name"><%= c[:requirements] %></td>
+          <td class="name"><%= c[:semaphore] %></td>
+          <td class="name">Ver compradores ></td>
+        </tr>
+          <% c[:buyers].each do |b| %>
+            <tr class="buyers">
+              <td class="name"><%= b[:name] %></td>
+              <td class="name"><%= b[:materials] %></td>
+              <td class="name"><%= b[:btype] %></td>
+              <td class="name"><%= b[:requirements].count %></td>
+              <td class="name"><%= c[:requirements] %></td>
+              <td class="name"><%= b[:semaphore] %></td>
+              <td class="name">Ver requerimientos ></td>
+            </tr>
+            <% b[:requirements].each do |r| %>
+              <tr class="requirements">
+                <td class="name"></td>
+                <td class="name"><%= r[:material] %></td>
+                <td class="name"></td>
+                <td class="name"><%= r[:category] %></td>
+                <td class="name"></td>
+                <td class="name"><%= r[:semaphore] %></td>
+                <td class="name"></td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>  
+      </table>
+    </div>
+  </div>
+</div> 

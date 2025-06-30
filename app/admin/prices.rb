@@ -1,6 +1,6 @@
 ActiveAdmin.register Price do
   # Specify parameters which should be permitted for assignment
-  permit_params :country_id, :material_id, :value
+  permit_params :buyer_id, :material_id, :value
 
   # or consider:
   #
@@ -15,7 +15,7 @@ ActiveAdmin.register Price do
 
   # Add or remove filters to toggle their visibility
   filter :id
-  filter :country
+  filter :buyer
   filter :material
   filter :value
   filter :created_at
@@ -25,7 +25,7 @@ ActiveAdmin.register Price do
   index do
     selectable_column
     id_column
-    column :country
+    column :buyer
     column :material
     column :value
     column :created_at
@@ -37,7 +37,7 @@ ActiveAdmin.register Price do
   show do
     attributes_table_for(resource) do
       row :id
-      row :country
+      row :buyer
       row :material
       row :value
       row :created_at
@@ -49,7 +49,7 @@ ActiveAdmin.register Price do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
-      f.input :country
+      f.input :buyer
       f.input :material
       f.input :value
     end

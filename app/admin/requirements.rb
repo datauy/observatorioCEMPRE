@@ -1,11 +1,11 @@
-ActiveAdmin.register Country do
+ActiveAdmin.register Requirement do
   # Specify parameters which should be permitted for assignment
-  permit_params :name, :description, :semaphore
+  permit_params :name, :description, :buyer_id, :requirement_category_id, :semaphore, :material_id
 
   # or consider:
   #
   # permit_params do
-  #   permitted = [:name, :description, :semaphore]
+  #   permitted = [:name, :description, :buyer_id, :requirement_category_id, :semaphore, :material_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
@@ -17,7 +17,10 @@ ActiveAdmin.register Country do
   filter :id
   filter :name
   filter :description
+  filter :buyer
+  filter :requirement_category
   filter :semaphore
+  filter :material
   filter :created_at
   filter :updated_at
 
@@ -27,7 +30,10 @@ ActiveAdmin.register Country do
     id_column
     column :name
     column :description
+    column :buyer
+    column :requirement_category
     column :semaphore
+    column :material
     column :created_at
     column :updated_at
     actions
@@ -39,7 +45,10 @@ ActiveAdmin.register Country do
       row :id
       row :name
       row :description
+      row :buyer
+      row :requirement_category
       row :semaphore
+      row :material
       row :created_at
       row :updated_at
     end
@@ -51,7 +60,10 @@ ActiveAdmin.register Country do
     f.inputs do
       f.input :name
       f.input :description
+      f.input :buyer
+      f.input :requirement_category
       f.input :semaphore
+      f.input :material
     end
     f.actions
   end

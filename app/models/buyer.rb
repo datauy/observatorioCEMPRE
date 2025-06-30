@@ -1,5 +1,10 @@
 class Buyer < ApplicationRecord
-  belongs_to :country
+  has_many :requirements
+  has_many :material_relations
+  has_many :materials, through: :material_relations
+
+  belongs_to :country, class_name: "Buyer", foreign_key: 'buyer_id'
+  has_many :buyers, class_name: "Buyer", foreign_key: 'buyer_id'
 
   enum :semaphore, [
     'Verde',
@@ -7,6 +12,7 @@ class Buyer < ApplicationRecord
     'Rojo'
   ]
   enum :btype, [
+    'País',
     'Intermediario',
     'Empresa pequeña',
     'Empresa grande'
@@ -17,6 +23,6 @@ class Buyer < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["country"]
+    ["buyer"]
   end
 end

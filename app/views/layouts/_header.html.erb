@@ -1,0 +1,25 @@
+<div class="header-inner">
+  <%= link_to image_tag("/images/observatorio.svg"), root_path() %>
+  <%= link_to '
+    <div class="menu-bar first"></div>
+    <div class="menu-bar middle"></div>
+    <div class="menu-bar last"></div>'.html_safe, '#', id:"mobile-menu", onClick:'toggleMenu(event)' %>
+  <nav>
+    <ul>
+      <li><%= link_to "Compradores", root_path() %></li>
+      <li><%= link_to "Precios", root_path() %></li>
+      <li><%= link_to "Sobre el proyecto",  root_path() %>
+  </nav>
+  <script>
+    function toggleMenu(e){
+      e.preventDefault()
+      let nav = document.querySelector('nav')
+      if ( nav.style.display == 'none' || nav.style.display == '' ) {
+        nav.style.display = 'flex'
+      }
+      else {
+        nav.style.display = 'none'
+      } 
+    }
+  </script>
+</div>
