@@ -19,33 +19,33 @@
         </tr>
         <% @countries.each do |c| %>
         <tr class="country">
-          <td class="name"><%= c[:name] %></td>
-          <td class="name"><%= c[:materials] %></td>
-          <td class="name"><%= c[:buyers].count %></td>
-          <td class="name"><%= c[:buyers_requirements] %></td>
-          <td class="name"><%= c[:requirements] %></td>
-          <td class="name"><%= c[:semaphore] %></td>
-          <td class="name">Ver compradores ></td>
+          <td class="name"><%= link_to c[:name], buyer_path(c[:id]), target: '_blank' %></td>
+          <td class="materials"><%= c[:materials] %></td>
+          <td class="bcont"><%= c[:buyers].count %></td>
+          <td class="breq"><%= c[:buyers_requirements] %></td>
+          <td class="req"><%= c[:requirements] %></td>
+          <td class="semaphore"><%= c[:semaphore] %></td>
+          <td class="action">Ver compradores ></td>
         </tr>
           <% c[:buyers].each do |b| %>
             <tr class="buyers">
-              <td class="name"><%= b[:name] %></td>
-              <td class="name"><%= b[:materials] %></td>
-              <td class="name"><%= b[:btype] %></td>
-              <td class="name"><%= b[:requirements].count %></td>
-              <td class="name"><%= c[:requirements] %></td>
-              <td class="name"><%= b[:semaphore] %></td>
-              <td class="name">Ver requerimientos ></td>
+              <td class="name"><%= link_to b[:name], buyer_path(b[:id]), target: '_blank' %></td>
+              <td class="materials"><%= b[:materials] %></td>
+              <td class="btype"><%= b[:btype] %></td>
+              <td class="breq"><%= b[:requirements].count %></td>
+              <td class="creq"><%= c[:requirements] %></td>
+              <td class="semaphore"><%= b[:semaphore] %></td>
+              <td class="action">Ver requerimientos ></td>
             </tr>
             <% b[:requirements].each do |r| %>
               <tr class="requirements">
-                <td class="name"></td>
-                <td class="name"><%= r[:material] %></td>
-                <td class="name"></td>
-                <td class="name"><%= r[:category] %></td>
-                <td class="name"></td>
-                <td class="name"><%= r[:semaphore] %></td>
-                <td class="name"></td>
+                <td class=""></td>
+                <td class="materials"><%= r[:material] %></td>
+                <td class=""></td>
+                <td class="rcat"><%= r[:category] %></td>
+                <td class=""></td>
+                <td class="semaphore"><%= r[:semaphore] %></td>
+                <td class=""></td>
               </tr>
             <% end %>
           <% end %>

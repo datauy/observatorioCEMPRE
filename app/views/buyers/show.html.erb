@@ -1,0 +1,17 @@
+<div id="content" class="buyer">
+  <h1>Ficha de <%= @buyer.name %></h1>
+  <div class="info">
+    <div class="info-left">
+      <h2>Ficha de <%= @buyer.name %></h2>
+      <ul>
+        <li><i class="fa fa-warehouse-full"></i><span><%= @buyer.btype %></span></li>
+        <li><i class="fa location-dot"></i><span><%= @buyer.address %></span></li>
+        <li><i class="fa fa-phone"></i><span><%= @buyer.phone %></span></li>
+        <li><i class="fa fa-at"></i><span><%= @buyer.email %></span></li>
+        <li><i class="fa fa-globe"></i><span><%= @buyer.website %></span></li>
+    </div>
+    <div class="info-right">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
