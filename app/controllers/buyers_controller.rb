@@ -7,6 +7,10 @@ class BuyersController < ApplicationController
     self.search
   end
 
+  def prices
+
+  end
+  #
   def search
     @country_options = []
     @materials_options = []

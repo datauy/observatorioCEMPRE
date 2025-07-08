@@ -1,0 +1,27 @@
+<div class="prices">
+  <div class="header">
+    <h1>Precios</h1>
+  </div>
+  <div id="content">
+    <table id="buyers">
+      <tr class="theaders">
+        <th><i class="fa fa-flag"></i>País</th>
+        <% materials = Material.all %>
+        <% materials.each do |m| %>
+        <th><i class="fa fa-recycle"></i><%= m.name %></th>
+        <% end %>
+      </tr>
+      <% Buyer.where( btype: 0 ).each do |c| %>
+      <tr>
+        <td class="name"><%= c.name %></td>
+        <% materials.each do |m| %>
+        <td>
+          <% price = Price.where(buyer_id: c.id, material_id: m.id ).pluck(:value) %>
+          <%= price.present? ? "#{price.first} $" : '' %>
+        </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

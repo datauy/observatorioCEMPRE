@@ -6,6 +6,8 @@ class Buyer < ApplicationRecord
   has_one :country, class_name: "Buyer", foreign_key: 'buyer_id'
   has_many :buyers, class_name: "Buyer", foreign_key: 'buyer_id'
 
+  has_many :prices
+
   enum :semaphore, [
     'Verde',
     'Amarillo',
