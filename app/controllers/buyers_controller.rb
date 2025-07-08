@@ -4,14 +4,6 @@ class BuyersController < ApplicationController
   end
 
   def index
-    self.search
-  end
-
-  def prices
-
-  end
-  #
-  def search
     @country_options = []
     @materials_options = []
     @buyer_options = []
@@ -69,4 +61,7 @@ class BuyersController < ApplicationController
     @req_country = req_country.values
     @req_company = req_company.values
   end
+  #
+  #
+
 end

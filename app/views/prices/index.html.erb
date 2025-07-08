@@ -1,0 +1,20 @@
+<div class="prices">
+  <div class="header">
+    <h1>Precios</h1>
+  </div>
+  <div id="content">
+    <div id="filters" data-controller="prices">
+      <div class="select-filter">
+        <i class="fa fa-flag"></i>
+        <%= select_tag :countries, options_for_select(Buyer.where( btype: 0 ).map {|c| [c.name, c.id]}), { data: { action: 'prices#search', 'prices-target': 'countries' }, multiple: true } %>
+      </div>
+      <div class="select-filter">
+        <i class="fa fa-recycle"></i>
+        <%= select_tag :materials, options_for_select(Material.all.map {|m| [m.name, m.id]}), { data: { action: 'prices#search', 'prices-target': 'materials' }, multiple: true } %>
+      </div>
+    </div>
+    <%= turbo_frame_tag 'prices_table' do %>
+      <%= render partial: 'table' %>
+    <% end %>
+  </div>
+</div>

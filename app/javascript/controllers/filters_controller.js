@@ -3,7 +3,7 @@ import SlimSelect from "slim-select"
 
 // Connects to data-controller="filters"
 export default class extends Controller {
-  static targets = ['country']
+  static targets = ['country', 'materials']
   
   connect() {
     console.log("CONNECT FILTER", this.countryTarget);

@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "buyers#index"
   get "comprador/:id" => "buyers#show", as: :buyer
-  get "precios" => "buyers#prices"
+  get "precios" => "prices#index"
 end

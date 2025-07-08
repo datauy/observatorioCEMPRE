@@ -82,7 +82,15 @@ nav ul {
   background-color: var(--color-darkseagreen);
   margin-bottom: 50px;
 }
-
+th {
+  font-weight: 400;
+  padding: 18px 16px;
+  &:first-child {
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+  }
+}
 .theaders td {
   padding: 18px 0;
 }
@@ -93,10 +101,7 @@ td {
 }
 td:first-child {
   padding-left:16px;
-}
-
-td:last-child {
-  padding-left:16px;
+  text-align: left;
 }
 
 .action button {
@@ -128,15 +133,6 @@ td:last-child {
 #buyers {
   tbody{
     border: 1px solid var(--Grises-Gris-06, #F5F5F5);
-    th {
-      font-weight: 400;
-      padding: 18px 16px;
-      &:first-child {
-        font-weight: 600;
-        line-height: 16px;
-        text-align: left;
-      }
-    }
     tr {
       border-bottom: 1px solid var(--Grises-Gris-06, #F5F5F5);
     }
@@ -200,4 +196,16 @@ td:last-child {
   min-width: 24px;
   min-height: 24px;
   display: block;
+}
+/* PRICE PAGE */
+.prices {
+  #content {
+    overflow: scroll;
+  }
+  #filters {
+    justify-content: flex-start;
+    td {
+      min-width: 100px;
+    }
+  }
 }

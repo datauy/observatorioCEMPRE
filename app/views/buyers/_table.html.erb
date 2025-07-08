@@ -26,7 +26,9 @@
         <td class="breq"><%= b[:requirements].count %></td>
         <td class="creq"><%= c[:requirements] %></td>
         <td class="semaphore-wraper"><%= semaphore(b[:semaphore]) %></td>
-        <td class="action"><button data-action='buyers#expand'>Ver requerimientos ></button></td>
+        <td class="action">
+          <%= b[:requirements].length > 0 ? "<button data-action='buyers#expand'>Ver requerimientos ></button>".html_safe : '' %>
+        </td>
       </tr>
       <% if b[:coordinates].present? %>
       <% coords = b[:coordinates].split(',') %>
