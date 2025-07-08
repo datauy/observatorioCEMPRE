@@ -3,7 +3,7 @@ import SlimSelect from "slim-select"
 
 // Connects to data-controller="filters"
 export default class extends Controller {
-  static targets = ['country', 'materials']
+  static targets = ['countries', 'materials', 'buyers', 'semaphore']
   
   connect() {
     console.log("CONNECT FILTER", this.countryTarget);
@@ -63,37 +63,23 @@ export default class extends Controller {
   }
 
   search(e) {
-    console.log("SEARCH", this.countryTarget);
-    /*if ( event !== null ) {
-      //Handle filters
-      let cat = event.target.dataset.category;
-      let value = event.target.dataset.value;
-      if ( cat == 'text' ) {
-        window.active_filters[cat] = document.getElementById('search-text').value
-      }
-      else {
-        if ( event.target.classList.contains('active') ) {
-          window.active_filters[cat].splice(window.active_filters[cat].indexOf(value), 1);
-        }
-        else {
-          window.active_filters[cat].push(value);
-        }
-        event.target.classList.toggle('active');
-      }
+    let countries = [...this.countriesTarget.selectedOptions].map(o => o.value)
+    let materials = [...this.materialsTarget.selectedOptions].map(o => o.value)
+    let buyers = [...this.buyersTarget.selectedOptions].map(o => o.value)
+    let semaphore = [...this.semaphoreTarget.selectedOptions].map(o => o.value)
+    let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/")
+    if ( materials.length > 0 ) {
+      url.searchParams.append('materials', materials)
     }
-    // Create URL
-    let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/search");
-    Object.keys(window.active_filters).forEach( cat => {
-      if ( window.active_filters[cat].length ) {
-        if ( cat == 'text' ) {
-          if (window.active_filters[cat].length > 2 )
-            url.searchParams.append(cat, window.active_filters[cat]);
-        }
-        else {
-          url.searchParams.append(cat, window.active_filters[cat].join(','));
-        }
-      }
-    });
+    if ( countries.length > 0 ) {
+      url.searchParams.append('countries', countries)
+    }
+    if ( buyers.length > 0 ) {
+      url.searchParams.append('buyers', buyers)
+    }
+    if ( semaphore.length > 0 ) {
+      url.searchParams.append('semaphore', semaphore)
+    }
     fetch(url.href, {
       method: "GET",
       headers: {
@@ -103,9 +89,6 @@ export default class extends Controller {
     .then(r => r.text())
     .then(html => {
       Turbo.renderStreamMessage(html)
-      if (event !== null ) {
-        event.target.parentNode.classList.remove('active')
-      }
-    })*/
+    })
   }
 }

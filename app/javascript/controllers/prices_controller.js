@@ -30,7 +30,6 @@ export default class extends Controller {
 
   search(e) {
     let countries = [...this.countriesTarget.selectedOptions].map(o => o.value)
-    console.log("SEARCH", countries);
     let materials = [...this.materialsTarget.selectedOptions].map(o => o.value)
     let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/precios")
     if ( materials.length > 0 ) {
@@ -49,35 +48,5 @@ export default class extends Controller {
     .then(html => {
       Turbo.renderStreamMessage(html)
     })
-    /*if ( event !== null ) {
-      //Handle filters
-      let cat = event.target.dataset.category;
-      let value = event.target.dataset.value;
-      if ( cat == 'text' ) {
-        window.active_filters[cat] = document.getElementById('search-text').value
-      }
-      else {
-        if ( event.target.classList.contains('active') ) {
-          window.active_filters[cat].splice(window.active_filters[cat].indexOf(value), 1);
-        }
-        else {
-          window.active_filters[cat].push(value);
-        }
-        event.target.classList.toggle('active');
-      }
-    }
-    // Create URL
-    Object.keys(window.active_filters).forEach( cat => {
-      if ( window.active_filters[cat].length ) {
-        if ( cat == 'text' ) {
-          if (window.active_filters[cat].length > 2 )
-            url.searchParams.append(cat, window.active_filters[cat]);
-        }
-        else {
-          url.searchParams.append(cat, window.active_filters[cat].join(','));
-        }
-      }
-    });
-    */
   }
 }

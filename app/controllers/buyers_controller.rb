@@ -5,14 +5,36 @@ class BuyersController < ApplicationController
 
   def index
     @country_options = []
-    @materials_options = []
+    @materials_options = Material.all.map {|m| [m.name, m.id]}
     @buyer_options = []
     req_company = {}
     req_country = {}
     @semaphore = []
     @countries = []
+    buyers = Buyer
+    if params[:buyers].present?
+      buy = params[:buyers].split(',')
+      buyers = buyers.where(id: buy)
+      #paises salen de compradores
+    end
+    if params[:countries].present?
+      ctries = params[:countries].split(',')
+      buyers = buyers.where(buyer_id: ctries)
+    end
+    if params[:materials].present?
+      mats = params[:materials].split(',')
+      buyers = buyers.includes(:materials).where('materials.id': mats)
+    end
+    if params[:semaphore].present?
+      sems = params[:semaphore].split(',')
+      buyers = buyers.where(semaphore: sems)
+    end
 
-    Buyer.where( btype: 0 ).each do |c|
+    #TODO filtros por separado de requisitos
+    #if params[:buyers].present?
+    #  buyers = buyers.where(params[:buyers])
+    #end
+    Buyer.where( id: buyers.pluck(:buyer_id).uniq ).each do |c|
       creq = c.requirements
       country = {
         id: c.id,
@@ -30,7 +52,7 @@ class BuyersController < ApplicationController
         end
       end
       breq = 0
-      c.buyers.each do |b|
+      buyers.where(buyer_id: c.id).each do |b|
         buyer = {
           id: b.id,
           name: b.name,

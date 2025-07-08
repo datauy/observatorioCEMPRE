@@ -1,26 +1,26 @@
 <div id="filters" data-controller='filters'>
   <div class="select-filter">
     <i class="fa fa-flag"></i>
-    <%= select_tag :countries, options_for_select(@country_options), { data: { action: 'filters#search', target: 'filters.country' }, multiple: true } %>
+    <%= select_tag :countries, options_for_select(@country_options), { data: { action: 'filters#search', 'filters-target': 'countries' }, multiple: true } %>
   </div>
   <div class="select-filter">
     <i class="fa fa-recycle"></i>
-    <%= select_tag :materials, options_for_select(@materials_options), { data: { action: 'filters#search', target: 'filters.materials' }, multiple: true } %>
+    <%= select_tag :materials, options_for_select(@materials_options), { data: { action: 'filters#search', 'filters-target': 'materials' }, multiple: true } %>
   </div>
   <div class="select-filter">
     <i class="fa fa-industry-windows"></i>
-    <%= select_tag :buyers, options_for_select(@buyer_options), { data: { action: 'filters#search', target: 'filters.buyers' }, multiple: true } %>
+    <%= select_tag :buyers, options_for_select(@buyer_options), { data: { action: 'filters#search', 'filters-target': 'buyers' }, multiple: true } %>
   </div>
   <div class="select-filter">
     <i class="fa fa-clipboard-list-check"></i>
-    <%= select_tag :req_company, options_for_select(@req_company), { data: { action: 'filters#search', target: 'filters.req_company' }, multiple: true } %>
+    <%= select_tag :req_company, options_for_select(@req_company), { data: { action: 'filters#search', 'filters-target': 'req_company' }, multiple: true } %>
   </div>
   <div class="select-filter">
     <i class="fa fa-building-columns"></i>
-    <%= select_tag :req_country, options_for_select(@req_country), { data: { action: 'filters#search', target: 'filters.req_country' }, multiple: true } %>
+    <%= select_tag :req_country, options_for_select(@req_country), { data: { action: 'filters#search', 'filters-target': 'req_country' }, multiple: true } %>
   </div>
   <div class="select-filter">
     <i class="fa fa-traffic-light"></i>
-    <%= select_tag :semaphore, options_for_select(['Verde', 'Amarillo', 'Rojo']), { data: { action: 'filters#search', target: 'filters.semaphore' }, multiple: true } %>
+    <%= select_tag :semaphore, options_for_select(['Verde', 'Amarillo', 'Rojo']), { data: { action: 'filters#search', 'filters-target': 'semaphore' }, multiple: true } %>
   </div>
 </div>

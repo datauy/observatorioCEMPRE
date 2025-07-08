@@ -6,7 +6,7 @@
   <div id="content">
     <%= render partial: 'filters' %>
     <div class="section">
-    <%= turbo_frame_tag "list" do %>
+    <%= turbo_frame_tag "buyers_table" do %>
         <%= render partial: 'table' %>
     <% end %>
     </div>
