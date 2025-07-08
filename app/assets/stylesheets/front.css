@@ -8,6 +8,7 @@
   	--color-darkseagreen: #8fb89f;
     --color-gray: #2c2c2c;
     --color-darkslategray: #193154;
+    --Grises-Gris-04: #C6C6C6;
   	
   	/* Font */
   	--font-work-sans: Work Sans;
@@ -67,7 +68,14 @@ nav ul {
     }
   }
 }
-
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--Grises-Gris-04, #C6C6C6);
+}
 /** PAGE **/
 .header {
   padding: 20px 50px;
@@ -91,7 +99,32 @@ td:last-child {
   padding-left:16px;
 }
 
+.action button {
+  font-weight: 600;
+  color: var(--color-seagreen);
+}
 /** BUYERS PAGE **/
+#filters {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
+  gap: 20px;
+  flex-wrap: wrap;
+  .select-filter {
+    position: relative;
+    .fa {
+      position: absolute;
+      z-index: 1;
+      top: 14px;
+      left: 16px;
+    }
+    .ss-main {
+      padding: 10px 16px 10px 34px;
+    }
+  }
+
+}
 #buyers {
   tbody{
     border: 1px solid var(--Grises-Gris-06, #F5F5F5);
@@ -119,22 +152,52 @@ td:last-child {
         }
       }
     }
-    .buyers td {
-      padding: 12px 16px;
-      &.name {
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 14px;
-        text-align: left;
-        a {
-          color: var(--color-seagreen);
+    .buyers {
+      display: none;
+      td {
+        padding: 12px 16px;
+        &.name {
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 14px;
+          text-align: left;
+          a {
+            color: var(--color-seagreen);
+          }
         }
       }
     }
-    .requirements td {
-      padding: 8px 16px;
-      border-bottom: 1px solid var(--Grises-Gris-06, #F5F5F5);
-      background: var(--Grises-Gris-05, #E2E2E2);
+    .requirements {
+      display: none;
+      td {
+        padding: 8px 16px;
+        border-bottom: 1px solid var(--Grises-Gris-06, #F5F5F5);
+        background: var(--Grises-Gris-05, #E2E2E2);
+      }
     }
   }
+}
+.semaphore {
+  display: flex;
+  gap: 3px;
+  padding: 5px;
+  border-radius: 2px;
+}
+.fade {
+  opacity: 0.1;
+}
+.green {
+  background-color: #3EB076;
+}
+.yellow {
+  background-color: #F7EC5B;
+}
+.red {
+  background-color: #F63B3B;
+}
+.circle {
+  border-radius: 50%;
+  min-width: 24px;
+  min-height: 24px;
+  display: block;
 }

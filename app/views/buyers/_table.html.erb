@@ -1,0 +1,50 @@
+<table id="buyers">
+  <tr class="theaders">
+    <th><i class="fa fa-flag"></i>País</th>
+    <th><i class="fa fa-recycle"></i>Materiales</th>
+    <th><i class="fa fa-industry-windows"></i>Compradores</th>
+    <th><i class="fa fa-clipboard-list-check"></i>Req. Empresa</th>
+    <th><i class="fa fa-building-columns"></i>Req. País</th>
+    <th><i class="fa fa-traffic-light"></i>Semáforo</th>
+    <th></th>
+  </tr>
+  <% @countries.each do |c| %>
+  <tr class="country" data-controller="buyers" data-buyers-target="buyer" data-buyers-id-value=<%= c[:id] %>>
+    <td class="name"><%= link_to c[:name], buyer_path(c[:id]), target: '_blank' %></td>
+    <td class="materials"><%= c[:materials] %></td>
+    <td class="bcont"><%= c[:buyers].count %></td>
+    <td class="breq"><%= c[:buyers_requirements] %></td>
+    <td class="req"><%= c[:requirements] %></td>
+    <td class="semaphore-wraper"><%= semaphore(c[:semaphore]) %></td>
+    <td class="action"><button data-action='buyers#expand'>Ver compradores ></button></td>
+  </tr>
+    <% c[:buyers].each do |b| %>
+      <tr class="buyers child-<%= c[:id] %>" data-controller="buyers" data-buyers-target="buyer" data-buyers-id-value=<%= b[:id] %>>
+        <td class="name"><%= link_to b[:name], buyer_path(b[:id]), target: '_blank' %></td>
+        <td class="materials"><%= b[:materials] %></td>
+        <td class="btype"><%= b[:btype] %></td>
+        <td class="breq"><%= b[:requirements].count %></td>
+        <td class="creq"><%= c[:requirements] %></td>
+        <td class="semaphore-wraper"><%= semaphore(b[:semaphore]) %></td>
+        <td class="action"><button data-action='buyers#expand'>Ver requerimientos ></button></td>
+      </tr>
+      <% if b[:coordinates].present? %>
+      <% coords = b[:coordinates].split(',') %>
+        <script>
+          window.markers.push([<%= coords[0].strip.to_d %>, <%= coords[1].strip.to_d %>])
+        </script>
+      <% end %>
+      <% b[:requirements].each do |r| %>
+        <tr class="requirements child-<%= b[:id] %>">
+          <td class=""></td>
+          <td class="materials"><%= r[:material] %></td>
+          <td class=""></td>
+          <td class="rcat"><%= r[:category] %></td>
+          <td class=""></td>
+          <td class="semaphore-wraper"><%= semaphore(r[:semaphore]) %></td>
+          <td class=""></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>  
+</table>

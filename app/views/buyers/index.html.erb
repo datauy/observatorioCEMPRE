@@ -1,0 +1,17 @@
+<script>window.markers = []</script>
+<div class="home">
+  <div class="header">
+    <h1>Compradores</h1>
+  </div>
+  <div id="content">
+    <%= turbo_frame_tag "list" do %>
+      <div class="section">
+        <%= render partial: 'filters' %>
+        <%= render partial: 'table' %>
+      </div>
+    <% end %>
+    <div class="section" data-controller="map"> 
+      <div id="map" style="height: 500px"></div>  
+    </div>
+  </div>
+</div>

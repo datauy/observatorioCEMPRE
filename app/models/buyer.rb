@@ -13,9 +13,9 @@ class Buyer < ApplicationRecord
   ]
   enum :btype, [
     'País',
+    'Compradores finales',
     'Intermediario',
-    'Empresa pequeña',
-    'Empresa grande'
+    'Emprendedores'
   ]
 
   def self.ransackable_attributes(auth_object = nil)
