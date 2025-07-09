@@ -9,6 +9,8 @@
     --color-gray: #2c2c2c;
     --color-darkslategray: #193154;
     --Grises-Gris-04: #C6C6C6;
+    --Grises-Gris-05: #E2E2E2;
+    --Grises-Gris-06: #F5F5F5;
   	
   	/* Font */
   	--font-work-sans: Work Sans;
@@ -174,8 +176,8 @@ td:first-child {
       display: none;
       td {
         padding: 8px 16px;
-        border-bottom: 1px solid var(--Grises-Gris-06, #F5F5F5);
-        background: var(--Grises-Gris-05, #E2E2E2);
+        border-bottom: 1px solid var(--Grises-Gris-06);
+        background: var(--Grises-Gris-05);
       }
     }
   }
@@ -233,4 +235,8 @@ td:first-child {
     padding-left: 0;
     justify-content: flex-start;
   }
+}
+#buyers-reqs {
+  border-bottom: 1px solid var(--Grises-Gris-06, #F5F5F5);
+  background: var(--Grises-Gris-06, #F5F5F5);
 }

@@ -52,5 +52,23 @@
       </tr>
       <% end %>
     </table>
+    <% if @buyer.btype != 'País' %>
+      <table id="buyers-reqs">
+        <tr class="theaders">
+          <th><i class="fa fa-flag"></i>Requerimientos Empresa</th>
+          <th><i class="fa fa-recycle"></i>Material</th>
+          <th><i class="fa fa-industry-windows"></i>Categoría</th>
+          <th><i class="fa fa-traffic-light"></i>Semáforo</th>
+        </tr>
+        <% @buyer.requirements.each do |r|%>
+        <tr>
+          <td class="name"><%= "<h4>#{r.name}</h4><p>#{r.description}</p>".html_safe %></td>
+          <td class="materials"><%= r.material.name %></td>
+          <td class="req"><%= r.requirement_category.name %></td>
+          <td class="semaphore-wraper"><%= semaphore(r.semaphore) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <% end %>
   </div>
 </div>
