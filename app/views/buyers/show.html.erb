@@ -1,17 +1,53 @@
-<div id="content" class="buyer">
+<div class="header">
   <h1>Ficha de <%= @buyer.name %></h1>
+</div>
+<div id="content" class="buyer">
   <div class="info">
     <div class="info-left">
-      <h2>Ficha de <%= @buyer.name %></h2>
+      <h2><%= @buyer.name %></h2><span>(<%= @buyer.btype %>)</span>
+      <% if @buyer.btype != 'País' %>
       <ul>
-        <li><i class="fa fa-warehouse-full"></i><span><%= @buyer.btype %></span></li>
-        <li><i class="fa location-dot"></i><span><%= @buyer.address %></span></li>
+        <li><i class="fa fa-location-dot"></i><span><%= @buyer.address %></span></li>
         <li><i class="fa fa-phone"></i><span><%= @buyer.phone %></span></li>
         <li><i class="fa fa-at"></i><span><%= @buyer.email %></span></li>
         <li><i class="fa fa-globe"></i><span><%= @buyer.website %></span></li>
+      </ul>
+      <% end %>
     </div>
-    <div class="info-right">
-      <div id="map"></div>
+    <% if @buyer.coordinates.present? %>
+      <% coords = @buyer.coordinates.split(',') %>
+      <script>window.markers=[{coords: [<%= coords[0] %>, <%= coords[1] %>], name: '<%= @buyer.name %>'}]</script>
+    <% else %>
+      <script>window.markers=[]</script>
+    <% end %>
+    <div class="info-right" data-controller="map">
+      <div id="map" style="height: 400px"></div>
     </div>
+  </div>
+  <div class="section country-requirements">
+    <%
+      if @buyer.btype == 'País'
+        country = @buyer
+      else
+        country = Buyer.find(@buyer.buyer_id)
+      end
+      logger.debug "\n\nLALALALALA\n#{@buyer.country.inspect}\n\n"
+    %>
+    <table id="buyers">
+      <tr class="theaders">
+        <th><i class="fa fa-flag"></i>Requerimientos País</th>
+        <th><i class="fa fa-recycle"></i>Material</th>
+        <th><i class="fa fa-industry-windows"></i>Categoría</th>
+        <th><i class="fa fa-traffic-light"></i>Semáforo</th>
+      </tr>
+      <% country.requirements.each do |r|%>
+      <tr>
+        <td class="name"><%= "<h4>#{r.name}</h4><p>#{r.description}</p>".html_safe %></td>
+        <td class="materials"><%= r.material.name %></td>
+        <td class="req"><%= r.requirement_category.name %></td>
+        <td class="semaphore-wraper"><%= semaphore(r.semaphore) %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>

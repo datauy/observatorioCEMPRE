@@ -37,6 +37,8 @@ export default class extends Controller {
       bounds.push(marker.coords)
     });
     currentLayer.addTo(window.mapa)
-    window.mapa.flyToBounds(bounds)
+    if ( bounds.length > 0 ) {
+      window.mapa.flyToBounds(bounds, {maxZoom: 8})
+    }
   }
 }
