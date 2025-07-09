@@ -1,3 +1,4 @@
 <%= turbo_stream.update("buyers_table") do %>
-    <%= render partial: 'table' %>
+  <script>window.markers = []</script>
+  <%= render partial: 'table' %>
 <% end %>

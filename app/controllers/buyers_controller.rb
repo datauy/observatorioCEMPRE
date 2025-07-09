@@ -4,6 +4,7 @@ class BuyersController < ApplicationController
   end
 
   def index
+    @expand = false
     @country_options = []
     @materials_options = Material.all.map {|m| [m.name, m.id]}
     @buyer_options = []
@@ -82,6 +83,12 @@ class BuyersController < ApplicationController
     end
     @req_country = req_country.values
     @req_company = req_company.values
+    respond_to do |format|
+      format.html
+      format.turbo_stream {
+        @expand = true
+      }
+    end
   end
   #
   #

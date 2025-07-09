@@ -33,7 +33,10 @@
       <% if b[:coordinates].present? %>
       <% coords = b[:coordinates].split(',') %>
         <script>
-          window.markers.push([<%= coords[0].strip.to_d %>, <%= coords[1].strip.to_d %>])
+          window.markers.push({
+            coords: [<%= coords[0].strip.to_d %>, <%= coords[1].strip.to_d %>],
+            name: '<%= "#{b[:name]} (#{b[:btype]})" %>'
+          })
         </script>
       <% end %>
       <% b[:requirements].each do |r| %>
@@ -50,3 +53,6 @@
     <% end %>
   <% end %>  
 </table>
+<% if @expand %>
+  <div data-controller="listener" data-listener-action-value='expand'>HOLA NANDO</div>
+<% end %>
