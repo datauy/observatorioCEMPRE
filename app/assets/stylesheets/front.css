@@ -185,6 +185,7 @@ td:first-child {
   gap: 3px;
   padding: 5px;
   border-radius: 2px;
+  justify-content: center;
 }
 .fade {
   opacity: 0.1;
@@ -221,7 +222,15 @@ td:first-child {
 .info {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 16px;
   .info-right {
     width: 50%;
+  }
+  li {
+    margin-top: 10px;
+  }
+  .semaphore {
+    padding-left: 0;
+    justify-content: flex-start;
   }
 }

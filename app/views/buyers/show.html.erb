@@ -4,7 +4,11 @@
 <div id="content" class="buyer">
   <div class="info">
     <div class="info-left">
-      <h2><%= @buyer.name %></h2><span>(<%= @buyer.btype %>)</span>
+      <div class="info-title">
+        <h2><%= @buyer.name %></h2>
+        <span>(<%= @buyer.btype %>)</span>
+      </div>
+      <div class="semaphore-wraper"><%= semaphore(@buyer.semaphore) %></div>
       <% if @buyer.btype != 'País' %>
       <ul>
         <li><i class="fa fa-location-dot"></i><span><%= @buyer.address %></span></li>
@@ -31,7 +35,6 @@
       else
         country = Buyer.find(@buyer.buyer_id)
       end
-      logger.debug "\n\nLALALALALA\n#{@buyer.country.inspect}\n\n"
     %>
     <table id="buyers">
       <tr class="theaders">

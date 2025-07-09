@@ -116,6 +116,9 @@ footer {
     gap: 20px;
     flex: 1 1 0;
     .logos-frame {
+      gap: 20px;
+      display: flex;
+      align-items: center;
       img {
         width: 140px;
         &.data-logo {
