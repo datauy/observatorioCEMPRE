@@ -112,7 +112,12 @@ td:first-child {
   padding-left:16px;
   text-align: left;
 }
-
+.minmax {
+  display: none;
+}
+td:focus .minmax {
+  display: block;
+}
 .action button {
   font-weight: 600;
   color: var(--color-seagreen);

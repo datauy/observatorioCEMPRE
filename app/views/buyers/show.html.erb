@@ -9,6 +9,7 @@
         <span>(<%= @buyer.btype %>)</span>
       </div>
       <div class="semaphore-wraper"><%= semaphore(@buyer.semaphore) %></div>
+      <div class="materials"><b>Materiales: </b><%= @buyer.materials.pluck(:name).join(', ') %></div>
       <% if @buyer.btype != 'País' %>
       <ul>
         <li><i class="fa fa-location-dot"></i><span><%= @buyer.address %></span></li>

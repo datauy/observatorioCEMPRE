@@ -1,11 +1,11 @@
 ActiveAdmin.register Buyer do
   # Specify parameters which should be permitted for assignment
-  permit_params :name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, material_ids:[]
+  permit_params :name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, :email, :website, :phone,material_ids:[]
 
   # or consider:
   #
   # permit_params do
-  #   permitted = [:name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id]
+  #   permitted = [:name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, :email, :website, :phone]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
@@ -16,14 +16,18 @@ ActiveAdmin.register Buyer do
   # Add or remove filters to toggle their visibility
   filter :id
   filter :name
-  filter :country
   filter :description
   filter :address
   filter :coordinates
   filter :semaphore
+  filter :country
   filter :btype
   filter :created_at
   filter :updated_at
+  filter :buyer
+  filter :email
+  filter :website
+  filter :phone
 
   # Add or remove columns to toggle their visibility in the index action
   index do
@@ -34,10 +38,14 @@ ActiveAdmin.register Buyer do
     column :address
     column :coordinates
     column :semaphore
+    column :country
     column :btype
     column :created_at
     column :updated_at
-    column :country
+    column :buyer
+    column :email
+    column :website
+    column :phone
     actions
   end
 
@@ -50,10 +58,14 @@ ActiveAdmin.register Buyer do
       row :address
       row :coordinates
       row :semaphore
+      row :country
       row :btype
       row :created_at
       row :updated_at
-      row :country
+      row :buyer
+      row :email
+      row :website
+      row :phone
     end
   end
 
@@ -69,6 +81,11 @@ ActiveAdmin.register Buyer do
       f.input :btype, label: "Tipo de comprador"
       f.input :country, label: "País", collection: Buyer.where(btype: 0).map{|b| [b.name, b.id]}
       f.input :materials, as: :check_boxes
+      f.input :btype
+      f.input :buyer
+      f.input :email
+      f.input :website
+      f.input :phone
     end
     f.actions
   end

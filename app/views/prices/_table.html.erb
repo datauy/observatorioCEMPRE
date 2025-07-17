@@ -11,6 +11,7 @@
     <% @materials.each do |m| %>
     <td>
       <% price = Price.where(buyer_id: c.id, material_id: m.id ).pluck(:value) %>
+      <span class="minmax">100 - 200</span>
       <%= price.present? ? "#{price.first} $" : '' %>
     </td>
     <% end %>
