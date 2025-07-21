@@ -112,12 +112,7 @@ td:first-child {
   padding-left:16px;
   text-align: left;
 }
-.minmax {
-  display: none;
-}
-td:focus .minmax {
-  display: block;
-}
+
 .action button {
   font-weight: 600;
   color: var(--color-seagreen);
@@ -221,6 +216,47 @@ td:focus .minmax {
     justify-content: flex-start;
     td {
       min-width: 100px;
+    }
+  }
+  .price-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    .price-head {
+      display: flex;
+      flex-direction: column;
+      line-height: 16px;
+    }
+    .price-action {
+      position: relative;
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+      min-width: 180px;
+      word-break: break-word;
+      bottom: 0px;
+      left: 30px;
+      padding: 8px;
+      border-radius: 8px;
+      background: var(--Grises-Gris-05);
+    }
+    .tooltip::before {
+      background: var(--Grises-Gris-05);
+      content: '';
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      left: -6px;
+      bottom: 16px;
+      transform: rotate(45deg);
+      z-index: -1;
+
+    }
+    .tooltip.active {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
