@@ -10,7 +10,7 @@
       </div>
       <div class="select-filter">
         <i class="fa fa-recycle"></i>
-        <%= select_tag :materials, options_for_select(Material.all.map {|m| [m.name, m.id]}), { data: { action: 'prices#search', 'prices-target': 'materials' }, multiple: true } %>
+        <%= select_tag :materials, options_for_select(Material.categories.map {|c,i| [c,i]}), { data: { action: 'prices#search', 'prices-target': 'materials' }, multiple: true } %>
       </div>
     </div>
     <%= turbo_frame_tag 'prices_table' do %>

@@ -1,6 +1,6 @@
 ActiveAdmin.register Material do
   # Specify parameters which should be permitted for assignment
-  permit_params :name, :description, :color
+  permit_params :name, :description, :color, :category
 
   # or consider:
   #
@@ -16,6 +16,7 @@ ActiveAdmin.register Material do
   # Add or remove filters to toggle their visibility
   filter :id
   filter :name
+  filter :category
   filter :description
   filter :color
   filter :created_at
@@ -26,6 +27,7 @@ ActiveAdmin.register Material do
     selectable_column
     id_column
     column :name
+    column :category
     column :description
     column :color
     column :created_at
@@ -38,6 +40,7 @@ ActiveAdmin.register Material do
     attributes_table_for(resource) do
       row :id
       row :name
+      row :category
       row :description
       row :color
       row :created_at
@@ -50,6 +53,7 @@ ActiveAdmin.register Material do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       f.input :name
+      f.input :category
       f.input :description
       f.input :color
     end

@@ -30,10 +30,10 @@ export default class extends Controller {
 
   search(e) {
     let countries = [...this.countriesTarget.selectedOptions].map(o => o.value)
-    let materials = [...this.materialsTarget.selectedOptions].map(o => o.value)
+    let materials_cat = [...this.materialsTarget.selectedOptions].map(o => o.value)
     let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/precios")
-    if ( materials.length > 0 ) {
-      url.searchParams.append('materials', materials)
+    if ( materials_cat.length > 0 ) {
+      url.searchParams.append('materials_cat', materials_cat)
     }
     if ( countries.length > 0 ) {
       url.searchParams.append('countries', countries)

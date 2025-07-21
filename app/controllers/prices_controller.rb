@@ -7,9 +7,9 @@ class PricesController < ApplicationController
     else
       @countries = Buyer.where( btype: 0 )
     end
-    if params[:materials].present?
-      mats = params[:materials].split(',')
-      @materials = Material.where(id: mats)
+    if params[:materials_cat].present?
+      mats = params[:materials_cat].split(',')
+      @materials = Material.where(category: mats)
     else
       @materials = Material.all
     end

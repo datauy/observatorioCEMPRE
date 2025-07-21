@@ -26,7 +26,7 @@
             <button class="info-tooltip" onclick="loadTooltip(event)"><i class="fas fa-circle-info"></i></button>
             <div class="tooltip">
               <b><%= price.description.present? ? "#{price.description}" : '' %></b>
-              <span><%= price.source.present? ? "#{price.source}" : '' %></span>
+              <span><%= price.source.present? ? "Fuente: #{price.source}" : '' %></span>
             </div>
           </div>
         <% end %>
