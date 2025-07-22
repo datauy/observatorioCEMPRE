@@ -1,11 +1,11 @@
 ActiveAdmin.register Buyer do
   # Specify parameters which should be permitted for assignment
-  permit_params :name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, :email, :website, :phone,material_ids:[]
+  permit_params :name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, :email, :website, :phone, :market, :anual_volume, :mensual_volume, material_ids:[]
 
   # or consider:
   #
   # permit_params do
-  #   permitted = [:name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, :email, :website, :phone]
+  #   permitted = [:name, :description, :address, :coordinates, :semaphore, :btype, :buyer_id, :email, :website, :phone, :market, :anual_volume, :mensual_volume]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
@@ -24,10 +24,12 @@ ActiveAdmin.register Buyer do
   filter :btype
   filter :created_at
   filter :updated_at
-  filter :buyer
   filter :email
   filter :website
   filter :phone
+  filter :market
+  filter :anual_volume
+  filter :mensual_volume
 
   # Add or remove columns to toggle their visibility in the index action
   index do
@@ -38,14 +40,16 @@ ActiveAdmin.register Buyer do
     column :address
     column :coordinates
     column :semaphore
-    column :country
+    column :buyer_id
     column :btype
     column :created_at
     column :updated_at
-    column :buyer
     column :email
     column :website
     column :phone
+    column :market
+    column :anual_volume
+    column :mensual_volume
     actions
   end
 
@@ -58,7 +62,7 @@ ActiveAdmin.register Buyer do
       row :address
       row :coordinates
       row :semaphore
-      row :country
+      row :buyer_id
       row :btype
       row :created_at
       row :updated_at
@@ -66,6 +70,10 @@ ActiveAdmin.register Buyer do
       row :email
       row :website
       row :phone
+      row :market
+      row :anual_volume
+      row :mensual_volume
+      row :certifications
     end
   end
 
@@ -81,11 +89,13 @@ ActiveAdmin.register Buyer do
       f.input :btype, label: "Tipo de comprador"
       f.input :country, label: "País", collection: Buyer.where(btype: 0).map{|b| [b.name, b.id]}
       f.input :materials, as: :check_boxes
-      f.input :btype
-      f.input :buyer
       f.input :email
       f.input :website
       f.input :phone
+      f.input :market
+      f.input :anual_volume
+      f.input :mensual_volume
+      f.input :certifications, as: :file, input_html: { multiple: true }
     end
     f.actions
   end
