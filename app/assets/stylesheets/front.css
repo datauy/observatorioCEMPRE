@@ -2,7 +2,7 @@
 :root {
   	
   	/* Color */
-  	--color-seagreen: #0f622d;
+  	--color-seagreen: #1b4b45;
   	--color-white: #fff;
   	--color-darkseagreen: #8fb89f;
     --color-gray: #2c2c2c;
@@ -235,11 +235,14 @@ td:first-child {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
+    padding: 5px 10px;
     .price-head {
       display: flex;
       flex-direction: column;
       line-height: 16px;
+      min-width: 122px;
+      gap: 7px;
     }
     .price-action {
       position: relative;
@@ -254,6 +257,7 @@ td:first-child {
       padding: 8px;
       border-radius: 8px;
       background: var(--Grises-Gris-05);
+      z-index: 1;
     }
     .tooltip::before {
       background: var(--Grises-Gris-05);
@@ -264,7 +268,7 @@ td:first-child {
       left: -6px;
       bottom: 16px;
       transform: rotate(45deg);
-      z-index: -1;
+      z-index: 1;
 
     }
     .tooltip.active {
