@@ -11,7 +11,8 @@ class PricesController < ApplicationController
       mats = params[:materials_cat].split(',')
       @materials = Material.where(category: mats)
     else
-      @materials = Material.all
+      mats = Price.all.uniq.pluck(:material_id)
+      @materials = Material.find(mats)
     end
     respond_to do |format|
       format.html

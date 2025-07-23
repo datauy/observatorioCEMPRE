@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_16_201812) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_22_032411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -81,6 +81,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_201812) do
     t.string "email"
     t.string "website"
     t.string "phone"
+    t.integer "market"
+    t.integer "anual_volume"
+    t.integer "mensual_volume"
     t.index ["buyer_id"], name: "index_buyers_on_buyer_id"
   end
 
@@ -101,16 +104,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_201812) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category"
+    t.integer "parent"
+    t.integer "ptype"
   end
 
   create_table "prices", force: :cascade do |t|
     t.bigint "material_id", null: false
     t.bigint "buyer_id", null: false
-    t.integer "value"
+    t.decimal "value", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "max_value"
-    t.integer "min_value"
+    t.decimal "max_value", precision: 8, scale: 2
+    t.decimal "min_value", precision: 8, scale: 2
     t.date "last_update"
     t.string "source"
     t.text "description"
