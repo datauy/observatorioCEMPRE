@@ -17,7 +17,7 @@
     </td>
     <% end %>
   </tr>
-    <% buyers = Buyer.includes(:prices).where(buyer_id: c.id).where.not('prices.id': nil).each do |b| %>
+    <% buyers = Buyer.includes(:prices).where(buyer_id: c.id, 'prices.material_id': @materials).each do |b| %>
     <tr>
       <td class="name"><%= link_to b.name, buyer_path(b.id), target: '_blank' %></td>
       <% @materials.each do |m| %>
