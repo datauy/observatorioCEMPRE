@@ -42,7 +42,7 @@ gem "thruster", require: false
 
 gem 'devise'
 gem 'activeadmin', "~> 4.0.0.beta15"
-gem 'ckeditor', git: 'https://github.com/galetahub/ckeditor.git'
+#gem 'ckeditor', git: 'https://github.com/galetahub/ckeditor.git'
 gem "mini_magick"
 gem "image_processing"
 gem 'activeadmin-searchable_select'

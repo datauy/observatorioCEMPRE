@@ -12,29 +12,24 @@
     <td>
       <% price = Price.where(buyer_id: c.id, material_id: m.id ).first %>
       <% if price.present? %>
-      <div class="price-cell">
-        <div class="price-head">
-          <% if price.value.present? %>
-          <b><%= "#{price.value} USD" %></b>
-          <% end %>
-          <% if price.min_value.present? || price.max_value.present? %>
-          <span><%= price.min_value.present? ? "#{price.min_value} USD" : '' %> - <%= price.max_value.present? ? "#{price.max_value} USD" : '' %></span>
-          <% end %>
-        </div>
-        <% if price.source.present? || price.description.present? %>
-          <div class="price-action">
-            <button class="info-tooltip" onclick="loadTooltip(event)"><i class="fas fa-circle-info"></i></button>
-            <div class="tooltip">
-              <b><%= price.description.present? ? "#{price.description}" : '' %></b>
-              <span><%= price.source.present? ? "Fuente: #{price.source}" : '' %></span>
-            </div>
-          </div>
-        <% end %>
-      </div>
+        <%= format_price(price) %>
       <% end %>
     </td>
     <% end %>
   </tr>
+    <% buyers = Buyer.includes(:prices).where(buyer_id: c.id).where.not('prices.id': nil).each do |b| %>
+    <tr>
+      <td class="name"><%= link_to b.name, buyer_path(b.id), target: '_blank' %></td>
+      <% @materials.each do |m| %>
+      <td>
+        <% price = Price.where(buyer_id: b.id, material_id: m.id ).first %>
+        <% if price.present? %>
+          <%= format_price(price) %>
+        <% end %>
+      </td>
+      <% end %>
+    </tr>
+    <% end %>
   <% end %>
 </table>
 <script>
